@@ -14,7 +14,7 @@ for people trying to get started in AI safety:
 
 - **The onboarding gap** — a funnel chart of where newcomers drop off.
 - **Start here** — a one-minute explainer, a field map (Evals + Mech Interp
-  highlighted as the lowest-barrier entry tracks), a plain-language glossary, and a
+  highlighted as the tracks you can start on today), a plain-language glossary, and a
   "your first two weeks" pathway.
 - **The experiment lifecycle** — the draft → claim → run → review → integrate →
   publish pipeline, colour-coded by role.
