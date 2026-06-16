@@ -30,5 +30,3 @@ Open `index.html` in any browser, or serve the folder:
 ```bash
 npx serve .
 ```
-
-Public kanban: https://github.com/users/justinshenk/projects/2
