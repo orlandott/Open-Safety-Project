@@ -240,6 +240,21 @@
   .check p{margin:0;font-size:15px;color:var(--grey);}
   @media(max-width:760px){.build{grid-template-columns:1fr;}}
 
+  /* ---------- Why (start your own) ---------- */
+  .why{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--line);}
+  .why__card{padding:24px 20px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .why__card:nth-child(3n){border-right:0;}
+  .why__card:nth-last-child(-n+3){border-bottom:0;}
+  .why__n{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--klein);}
+  .why__card h4{margin:10px 0 8px;}
+  .why__card p{font-size:15px;line-height:1.5;color:var(--grey);margin:0;}
+  @media(max-width:820px){
+    .why{grid-template-columns:1fr;}
+    .why__card{border-right:0;}
+    .why__card:nth-last-child(-n+3){border-bottom:1px solid var(--line);}
+    .why__card:last-child{border-bottom:0;}
+  }
+
   /* ---------- Team ---------- */
   .team{display:grid;grid-template-columns:repeat(5,1fr);gap:0;border:1px solid var(--line);}
   .member{padding:22px 18px;border-right:1px solid var(--line);}
@@ -311,6 +326,7 @@
       <a class="navlink" href="#start">Start Here</a>
       <a class="navlink" href="#how">How It Works</a>
       <a class="navlink" href="#proof">Proof</a>
+      <a class="navlink" href="#mentors">For Mentors</a>
       <a class="navlink" href="#team">Team</a>
       <a class="btn" href="https://github.com/users/justinshenk/projects/2" target="_blank" rel="noopener">Kanban&nbsp;↗</a>
     </nav>
@@ -706,11 +722,75 @@
   </div>
 </section>
 
-<!-- ===================== 06 · TEAM ===================== -->
-<section id="team">
+<!-- ===================== 06 · START YOUR OWN ===================== -->
+<section id="mentors">
   <div class="wrap">
     <div class="sec-head reveal">
       <div class="sec-head__num">06</div>
+      <div class="sec-head__txt">
+        <div class="kicker k-signal">For Mentors &amp; Research Leads</div>
+        <h2>Start your own project</h2>
+      </div>
+    </div>
+
+    <div class="twocol" style="margin-bottom:34px;">
+      <div class="reveal">
+        <p class="lead">Already mentoring — or ready to? This isn't just our pipeline. It's a pattern you can fork to run <strong>your own</strong> line of research with a cohort behind it.</p>
+        <p>Most research mentorship doesn't scale. It lives in DMs, scattered docs, and one-off calls, so a senior researcher can carry only a person or two at a time. The bottleneck usually isn't talent or interest — it's the absence of a structure that turns either one into shippable, reviewable work.</p>
+      </div>
+      <div class="reveal">
+        <p>The issue-as-experiment model removes that bottleneck. You decompose a research question into self-contained tickets; newcomers claim and run them; you review and integrate. The same machinery that onboards a junior researcher is the machinery that moves your research forward.</p>
+        <p class="dim" style="font-size:16px;">Below: why running your project this way beats doing it ad hoc.</p>
+      </div>
+    </div>
+
+    <div class="reveal">
+      <div class="kicker k-ink" style="margin-bottom:14px;">Why do it this way</div>
+      <div class="why">
+        <div class="why__card">
+          <div class="why__n">Reason 01</div>
+          <h4>Scale yourself</h4>
+          <p>One mentor, a whole cohort. Ticketed experiments let you support many researchers in parallel instead of one or two ad hoc — your review time is the only thing that has to scale.</p>
+        </div>
+        <div class="why__card">
+          <div class="why__n">Reason 02</div>
+          <h4>Ownable, parallel work</h4>
+          <p>Splitting a research line into self-contained issues lets contributors move at once without colliding — and gives each of them something real, and creditable, to own.</p>
+        </div>
+        <div class="why__card">
+          <div class="why__n">Reason 03</div>
+          <h4>Provenance by default</h4>
+          <p>Every result lands as a pull request with the exact commands behind it — optionally logged via Claude Code. The path from hypothesis to figure stays auditable and reproducible.</p>
+        </div>
+        <div class="why__card">
+          <div class="why__n">Reason 04</div>
+          <h4>A real path to publication</h4>
+          <p>The review → integrate → publish loop is built in, so junior work actually reaches papers. Contributors earn credit; you get throughput toward output that counts.</p>
+        </div>
+        <div class="why__card">
+          <div class="why__n">Reason 05</div>
+          <h4>A front door, not a closed lab</h4>
+          <p>Public-by-default issues turn "I want to help" into a claimable first task. Your repo becomes the on-ramp that recruits and trains the next contributor for you.</p>
+        </div>
+        <div class="why__card">
+          <div class="why__n">Reason 06</div>
+          <h4>Don't build the machinery</h4>
+          <p>Labels, issue templates, the project board, and automations all ship in the template. Fork it once and your pipeline stands up in an afternoon — not a quarter.</p>
+        </div>
+      </div>
+      <div class="hero__cta" style="margin-top:30px;">
+        <a class="btn btn--signal" href="https://github.com/users/justinshenk/projects/2" target="_blank" rel="noopener">Start your own — talk to us ↗</a>
+        <a class="btn btn--ghost" href="#how">Revisit the lifecycle →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 07 · TEAM ===================== -->
+<section id="team">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-head__num">07</div>
       <div class="sec-head__txt">
         <div class="kicker">Who we are</div>
         <h2>The team</h2>
@@ -805,6 +885,7 @@
         <a href="#start">Start Here</a>
         <a href="#how">How It Works</a>
         <a href="#proof">Proof</a>
+        <a href="#mentors">Start Your Own</a>
         <a href="#team">Team</a>
       </div>
       <div class="foot__meta">

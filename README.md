@@ -20,6 +20,8 @@ for people trying to get started in AI safety:
   publish pipeline, colour-coded by role.
 - **Proof of concept** — the `temporal-awareness` cohort timeline (20 fellows,
   Jan–Jun) with animated stats.
+- **Start your own project** — a mentor-facing pitch with six reasons to run a
+  research line as an issue-as-experiment apprenticeship instead of ad hoc.
 
 ### View it
 
