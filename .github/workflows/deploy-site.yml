@@ -52,7 +52,7 @@ jobs:
       - name: Build site
         working-directory: site
         env:
-          PUBLIC_BASE_PATH: /temporal-awareness # project page: https://OWNER.github.io/temporal-awareness
+          PUBLIC_BASE_PATH: /Open-Safety-Project # project page: https://orlandott.github.io/Open-Safety-Project
         run: npm run build
 
       - uses: actions/configure-pages@v5
