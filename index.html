@@ -5,6 +5,23 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>The Open Safety Project — Scalable infrastructure for independent AI safety research</title>
 <meta name="description" content="The Open Safety Project turns an open-source repository into a structured apprenticeship for AI safety research. Public infrastructure, graphs, and explainers for newcomers." />
+<meta name="theme-color" content="#ffffff" />
+<!-- Set the color theme before first paint: use the saved choice, otherwise match
+     the OS/system preference. Inline + render-blocking so there's no flash of the wrong theme. -->
+<script>
+  (function () {
+    try {
+      var stored = localStorage.getItem('osp-theme');
+      var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      var theme = stored || (prefersDark ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', theme);
+      var m = document.querySelector('meta[name="theme-color"]');
+      if (m) m.setAttribute('content', theme === 'dark' ? '#13141a' : '#ffffff');
+    } catch (e) {
+      document.documentElement.setAttribute('data-theme', 'light');
+    }
+  })();
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,500;0,600;0,700;0,800;0,900;1,600&family=Spectral:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
@@ -28,7 +45,40 @@
     --sans:'Archivo','Helvetica Neue',Arial,sans-serif;
     --serif:'Spectral',Georgia,'Times New Roman',serif;
     --mono:'Space Mono',ui-monospace,'SFMono-Regular',Menlo,monospace;
+    color-scheme:light;
   }
+
+  /* ---------- Dark theme ---------- */
+  html[data-theme="dark"]{
+    color-scheme:dark;
+    --black:#f3f2ee;       /* near-white: headings, strong text, "ink" fills */
+    --ink:#e7e6e1;
+    --paper:#13141a;
+    --panel:#1c1d24;
+    --panel-2:#23242c;
+    --grey:#a8a7a2;
+    --grey-2:#7c7b77;
+    --line:#3a3b44;
+    --hair:#2a2b33;
+    --klein:#5277e6;       /* International Klein Blue, lifted for contrast on dark */
+    --klein-dark:#3f63d8;
+    --klein-soft:#1b2540;
+    --signal:#ff5f47;
+    --signal-soft:#3a1d18;
+  }
+  /* Dark-mode fixes for colors hard-coded (or double-duty) in the light theme */
+  html[data-theme="dark"] .topbar{background:rgba(19,20,26,.9);}
+  html[data-theme="dark"] .figure__head{background:var(--panel-2);}  /* keep a dark bar so its white text stays legible */
+  html[data-theme="dark"] .stage__arrow{background:var(--paper);}
+  html[data-theme="dark"] .btn--ghost:hover{color:var(--paper);}
+  html[data-theme="dark"] .mark{background:linear-gradient(transparent 62%,rgba(82,119,230,.30) 62%);}
+  html[data-theme="dark"] .pipe-legend i[style*="#111"]{background:var(--ink)!important;}
+  /* Recolor inline SVG chart values that were hard-coded for the light theme */
+  html[data-theme="dark"] .chart [stroke="#111"]{stroke:var(--ink);}
+  html[data-theme="dark"] .chart [fill="#111"]{fill:var(--ink);}
+  html[data-theme="dark"] .chart [fill="#5f5f5f"]{fill:var(--grey);}
+  html[data-theme="dark"] .chart [fill="#002fa7"]{fill:var(--klein);}
+  html[data-theme="dark"] .chart [fill="#fff"]{fill:var(--paper);}
 
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
@@ -112,6 +162,22 @@
   .btn--ghost:hover{background:var(--black);color:#fff;}
   .btn--signal{background:var(--signal);border-color:var(--signal);}
   .btn--signal:hover{background:#d62b12;}
+
+  /* ---------- Theme toggle (sun / moon) ---------- */
+  .theme-toggle{
+    display:inline-flex;align-items:center;justify-content:center;
+    width:34px;height:34px;padding:0;cursor:pointer;
+    background:transparent;color:var(--black);
+    border:1px solid var(--line);
+    transition:background .15s,color .15s,border-color .15s;
+  }
+  .theme-toggle:hover{background:var(--black);color:var(--paper);}
+  .theme-toggle:focus-visible{outline:2px solid var(--klein);outline-offset:2px;}
+  .theme-toggle svg{width:17px;height:17px;display:block;}
+  .theme-toggle .icon-sun{display:none;}
+  html[data-theme="dark"] .theme-toggle .icon-sun{display:block;}
+  html[data-theme="dark"] .theme-toggle .icon-moon{display:none;}
+
   @media(max-width:820px){.topbar__nav .navlink{display:none;}}
 
   /* ---------- Nameplate / hero ---------- */
@@ -315,6 +381,15 @@
       <a class="navlink" href="#proof">Proof</a>
       <a class="navlink" href="#mentors">For Mentors</a>
       <a class="navlink" href="#team">Team</a>
+      <button id="themeToggle" class="theme-toggle" type="button" aria-label="Switch color theme" aria-pressed="false" title="Switch color theme">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+        </svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4" />
+          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+        </svg>
+      </button>
       <a class="btn" href="https://github.com/users/justinshenk/projects/2" target="_blank" rel="noopener">Kanban&nbsp;↗</a>
     </nav>
   </div>
@@ -910,6 +985,49 @@
       document.querySelectorAll('.count').forEach(function (c) {
         c.textContent = c.getAttribute('data-target');
       });
+    }
+  })();
+
+  // ---- Color theme toggle (sun / moon) ----
+  (function () {
+    var root = document.documentElement;
+    var btn = document.getElementById('themeToggle');
+    var meta = document.querySelector('meta[name="theme-color"]');
+    var mql = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
+
+    function current() { return root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light'; }
+
+    function apply(theme) {
+      root.setAttribute('data-theme', theme);
+      if (meta) meta.setAttribute('content', theme === 'dark' ? '#13141a' : '#ffffff');
+      if (btn) {
+        var label = theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme';
+        btn.setAttribute('aria-pressed', String(theme === 'dark'));
+        btn.setAttribute('aria-label', label);
+        btn.title = label;
+      }
+    }
+
+    // Reflect whatever the inline head script already applied.
+    apply(current());
+
+    if (btn) {
+      btn.addEventListener('click', function () {
+        var next = current() === 'dark' ? 'light' : 'dark';
+        try { localStorage.setItem('osp-theme', next); } catch (e) {}
+        apply(next);
+      });
+    }
+
+    // Keep following the system preference until the visitor explicitly picks a theme.
+    if (mql) {
+      var onChange = function (e) {
+        var stored = null;
+        try { stored = localStorage.getItem('osp-theme'); } catch (err) {}
+        if (!stored) apply(e.matches ? 'dark' : 'light');
+      };
+      if (mql.addEventListener) mql.addEventListener('change', onChange);
+      else if (mql.addListener) mql.addListener(onChange);
     }
   })();
 </script>
